@@ -8,7 +8,7 @@ export const loadGames = () => async (dispatch) => {
   const popularData = await axios.get(popularGamesURL());
   const newGamesData = await axios.get(newGamesURL());
   const upcomingData = await axios.get(upcomingGamesURL());
-  // allways put await befor async data
+  // allways put await after async data
   dispatch({
     type: "FETCH_GAMES",
     payload: {

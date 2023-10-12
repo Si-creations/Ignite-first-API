@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
+import GameDetail from "../components/GameDetail";
 //Redux
 import { useDispatch, useSelector } from "react-redux";
 import { loadGames } from "../actions/gamesAction";
 //Components
 import Game from "../components/Game";
+import Genres from "../components/Genres";
 //Styling and animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -18,6 +20,7 @@ const Home = () => {
   const { popular, newGames, upcoming } = useSelector((state) => state.games);
   return (
     <GameList>
+      {/* <GameDetail/> nezabudni zapnut */}
       <h2>Upcoming Games</h2>
       <Games>
         {upcoming.map((game) => (
@@ -54,6 +57,7 @@ const Home = () => {
           />
         ))}
       </Games>
+      <Genres/>
     </GameList>
   );
 };
