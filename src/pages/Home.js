@@ -6,7 +6,6 @@ import { loadGames } from "../actions/gamesAction";
 //Components
 import Game from "../components/Game";
 import Genres from "../components/Genres";
-import GenresList from "../components/GenresList";
 //Styling and animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -21,7 +20,7 @@ const Home = () => {
   const { popular, newGames, upcoming } = useSelector((state) => state.games);
   return (
     <GameList>
-      {/* <GameDetail/> nezabudni zapnut */}
+      <GameDetail/> 
       <h2>Upcoming Games</h2>
       <Games>
         {upcoming.map((game) => (

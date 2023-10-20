@@ -34,7 +34,9 @@ const Genres = () => {
             id={genre.id}
             image={genre.image_background}
             key={genre.id}
-          />
+          >
+            <h1>tester</h1>
+          </GenresList>
         ))}
       </StyledGenre>
     </GenresListStyle>

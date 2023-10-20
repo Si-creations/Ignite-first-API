@@ -3,12 +3,13 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-const GenresList = ({name, games_count, image_background}) => {
+const GenresList = ({name, count, image, children}) => {
   return (
     <StyledGenres>
       <h3>{name}</h3>
-      <p>{games_count}</p>
-      <img src={image_background} alt={name} />
+      <p>{count}</p>
+      <img src={image} alt={name} />
+      {children}
     </StyledGenres>
   );
 };
