@@ -18,3 +18,6 @@ export const loadGames = () => async (dispatch) => {
     },
   });
 };
+
+// payload is an aditional data which is send to reducer and than used there > action.payload."name of initState"  to mount it to state []
+// Explain of popular: popularData.data.results, = name > api link > and than just way to your data if needed "data>results" (deconstruction) 

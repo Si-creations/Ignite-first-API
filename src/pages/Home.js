@@ -6,6 +6,7 @@ import { loadGames } from "../actions/gamesAction";
 //Components
 import Game from "../components/Game";
 import Genres from "../components/Genres";
+import GenresList from "../components/GenresList";
 //Styling and animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -15,7 +16,7 @@ const Home = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadGames());
-  }, [dispatch]);
+  }, [dispatch]); // [dispatch] is just to fix err in web console
   //Get that data back + deconstruct it a bit
   const { popular, newGames, upcoming } = useSelector((state) => state.games);
   return (

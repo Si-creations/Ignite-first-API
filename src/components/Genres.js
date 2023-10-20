@@ -5,6 +5,7 @@ import { loadGenres } from "../actions/genresAction";
 //Styling and animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import GenresList from "./GenresList";
 
 const Genres = () => {
   //FETCH GENRES
@@ -12,29 +13,49 @@ const Genres = () => {
   useEffect(() => {
     dispatch(loadGenres());
   }, [dispatch]);
-  //Get that data back + deconstruct it a bit
-  const { genres } = useSelector((state) => state.genres);
+  //Get that data back
+  const { genres } = useSelector((state) => state.genresboi); // genres are in {} so i dont need to write genres.genres.map >> it's extracting from reducer
+  const isLogged = useSelector((store) => store.isLogged);
 
   return (
-    <div>
-      <h3>Genres</h3>
-      <Display>
+    <GenresListStyle>
+      {/* <button onClick={() => dispatch({ type: "IS_LOGGED" })}>
+        See genres
+      </button>
+      {isLogged && <h3>Genres:</h3>} */}
+      <h3>Genres:</h3>
+      
+      
+      <StyledGenre>
         {genres.map((genre) => (
-          <Genre name={genre.name} key={genre.id} />
+          <GenresList
+            name={genre.name}
+            count={genre.games_count}
+            id={genre.id}
+            image={genre.image_background}
+            key={genre.id}
+          />
         ))}
-      </Display>
-    </div>
+      </StyledGenre>
+    </GenresListStyle>
   );
 };
 
+const GenresListStyle = styled(motion.div)`
+  padding: 0rem 5rem;
+  h2{
+    padding: 5rem 0rem;
+  }
+`;
+
+
+
+const StyledGenre = styled(motion.div)`
+    min-height: 80vh;
+    display: grid ;
+    grid-template-columns: repeat(auto-fit,minmax(500px,1fr));
+    grid-column-gap: 3rem;
+    grid-row-gap: 4rem;
+`;
+
 export default Genres;
-
-const Genre = styled.h3`
-  color: black;
-`;
-
-const Display = styled.div`
-  color: black;
-  background: blue;
-  font-size: 1rem;
-`;
