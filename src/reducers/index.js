@@ -10,6 +10,7 @@ import testReducer from "./testReducer";
 const rootReducer = combineReducers({
   games: gamesReducer,
   detail: detailReducer,
+  //Added by me
   genresboi: genresReducer, 
   logged: isLoggedReducer,
   test: testReducer

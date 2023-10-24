@@ -27,15 +27,15 @@ const Genres = () => {
       
       
       <StyledGenre>
-        {genres.map((genre) => (
+        {genres.map((data) => (
           <GenresList
-            name={genre.name}
-            count={genre.games_count}
-            id={genre.id}
-            image={genre.image_background}
-            key={genre.id}
+            name={data.name}
+            count={data.games_count}
+            id={data.id}
+            image={data.image_background}
+            key={data.id}
           >
-            <h1>tester</h1>
+            {/* <h1>tester</h1> */}
           </GenresList>
         ))}
       </StyledGenre>
