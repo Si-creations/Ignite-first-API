@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom'
 import { smallImage } from "../util";
 
 const Game = ({ name, released, image, id }) => {
-  const stringPathId = Number(id);
+  const stringPathId = id.toString();
   console.log(`this is game id${stringPathId}`)
   //Load details Handler
   const dispatch = useDispatch();

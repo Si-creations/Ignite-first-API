@@ -6,9 +6,16 @@ import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { smallImage } from "../util";
+//IMAGES
+import playstation from "../img/playstation.svg";
+import steam from "../img/steam.svg";
+import xbox from "../img/xbox.svg";
+import nintendo from "../img/nintendo.svg";
+import apple from "../img/apple.svg";
+import gamepad from "../img/gamepad.svg";
 
 const GameDetail = ({ pathId }) => {
-  console.log(`tihs is your pathId from Detail${pathId}`)
+  console.log(`tihs is your pathId from Detail${pathId}`);
   //Exit Detail
   const navigate = useNavigate();
   const exitDetailHandler = (e) => {
@@ -18,13 +25,35 @@ const GameDetail = ({ pathId }) => {
       navigate("/");
     }
   };
+
+  //Get Platform images
+  const getPlatform = (platform) => {
+    switch (platform) {
+      case "PlayStation 4":
+        return playstation;
+      case "PlayStation 5":
+        return playstation
+      case "Xbox One":
+        return xbox;
+      case "Xbox Series S/X":
+        return xbox;
+      case "PC":
+        return steam;
+      case "Nintendo Switch":
+        return nintendo;
+      case "macOS":
+        return apple;
+      default:
+        return gamepad;
+    }
+  };
   //Data
   const { screen, game, isLoading } = useSelector((state) => state.detail);
   return (
     <>
       {!isLoading && (
         <CardShadow className="shaddow" onClick={exitDetailHandler}>
-          <Detail layoutid={pathId}>
+          <Detail layoutId={pathId}>
             <Stats>
               <div className="rating">
                 <h3>{game.name}</h3>
@@ -34,7 +63,10 @@ const GameDetail = ({ pathId }) => {
                 <h3>Platforms</h3>
                 <Platforms>
                   {game.platforms.map((data) => (
-                    <h3 key={data.platform.id}>{data.platform.name}</h3>
+                    <img
+                      key={data.platform.id}
+                      src={getPlatform(data.platform.name)}
+                    ></img>
                   ))}
                 </Platforms>
               </Info>

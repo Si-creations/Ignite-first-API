@@ -27,7 +27,9 @@ const Home = () => {
   return (
     <GameList>
       <LayoutGroup type="crossfade">
-        <AnimatePresence>{pathId && <GameDetail pathId={pathId}/>}</AnimatePresence>
+        <AnimatePresence>
+          {pathId && <GameDetail pathId={pathId} />}
+        </AnimatePresence>
         <h2>Upcoming Games</h2>
         <Games>
           {upcoming.map((game) => (
