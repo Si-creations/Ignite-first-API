@@ -1,5 +1,10 @@
 import axios from "axios";
-import { popularGamesURL, upcomingGamesURL, newGamesURL } from "../api";
+import {
+  popularGamesURL,
+  upcomingGamesURL,
+  newGamesURL,
+  searchGameURL,
+} from "../api";
 
 //Action Creator
 
@@ -19,5 +24,14 @@ export const loadGames = () => async (dispatch) => {
   });
 };
 
+export const fetchSearch = (game_name) => async (dispatch) => {
+  const searchGames = await axios.get(searchGameURL(game_name));
+  dispatch({
+    type: "FETCH_SEARCHED",
+    payload: {
+      searched: searchGames.data.results,
+    },
+  });
+};
 // payload is an aditional data which is send to reducer and than used there > action.payload."name of initState"  to mount it to state []
-// Explain of popular: popularData.data.results, = name > api link > and than just way to your data if needed "data>results" (deconstruction) 
+// Explain of popular: popularData.data.results, = name > api link > and than just way to your data if needed "data>results" (deconstruction)
