@@ -44,7 +44,7 @@ export const gameDetailsURL = (game_id) => `${base_url}games/${game_id}.json?&${
 //Game screenshots 
 export const gameScreenshotURL = (game_id) => `${base_url}games/${game_id}/screenshots?&${API_key}`
 //Searched game
-export const searchGameURL = (game_name) => `${base_url}games?${API_key}&search=${game_name}&page_size=9`
+export const searchGameURL = (game_name) => `${base_url}games?${API_key}&search=${game_name}`
 
 
 //Game genres

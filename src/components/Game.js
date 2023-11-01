@@ -2,27 +2,34 @@ import React from "react";
 //Styling and animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { loadup } from "../Animations";
 //Redux
 import { useDispatch } from "react-redux";
 import { loadDetail } from "../actions/detailAction";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { smallImage } from "../util";
 
 const Game = ({ name, released, image, id }) => {
   const stringPathId = id.toString();
-  console.log(`this is game id${stringPathId}`)
+  console.log(`this is game id${stringPathId}`);
   //Load details Handler
   const dispatch = useDispatch();
   const lodadDetailHandler = () => {
-    document.body.style.overflow= 'hidden'
+    document.body.style.overflow = "hidden";
     dispatch(loadDetail(id));
   };
   return (
-    <StyledGame layoutid={stringPathId} onClick={lodadDetailHandler}>
+    <StyledGame
+      variants={loadup}
+      initial="hidden"
+      animate="show"
+      layoutid={stringPathId}
+      onClick={lodadDetailHandler}
+    >
       <Link to={`/game/${id}`}>
-      <h3>{name}</h3>
-      <p>{released}</p>
-      <img src={smallImage(image, 640)} alt={name} />
+        <h3>{name}</h3>
+        <p>{released}</p>
+        <img src={smallImage(image, 640)} alt={name} />
       </Link>
     </StyledGame>
   );
@@ -45,18 +52,16 @@ const StyledGame = styled(motion.div)`
 
 export default Game;
 
-
-
 //NOTES:
 
 // 1> adding document.body.style.overflow= 'hidden' to loadDetailHandler is for stopping the whole page to scroll oeven more when you get to the end of "Detail" page > BUT than you can't scroll the whole page when you close the "Detail" so you need to add >>
 //Exit Detail
-  // const navigate = useNavigate();
-  // const exitDetailHandler = (e) => {
-  //   const element = e.target;
-  //   if (element.classList.contains("shaddow")) {
-  //     document.body.style.overflow = "auto";
-  //     navigate("/");
-  //   }
-  // };
-  // Thats to get OUT of the "Detail" and to be able to scroll the page again
+// const navigate = useNavigate();
+// const exitDetailHandler = (e) => {
+//   const element = e.target;
+//   if (element.classList.contains("shaddow")) {
+//     document.body.style.overflow = "auto";
+//     navigate("/");
+//   }
+// };
+// Thats to get OUT of the "Detail" and to be able to scroll the page again

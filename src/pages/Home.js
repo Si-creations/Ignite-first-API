@@ -11,6 +11,7 @@ import styled from "styled-components";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import { useLocation } from "react-router-dom";
 
+
 const Home = () => {
   //get the currrent Location
   const location = useLocation();
@@ -23,13 +24,33 @@ const Home = () => {
     dispatch(loadGames());
   }, [dispatch]); // [dispatch] is just to fix err in web console
   //Get that data back + deconstruct it a bit
-  const { popular, newGames, upcoming } = useSelector((state) => state.games);
+  const { popular, newGames, upcoming, searched } = useSelector(
+    (state) => state.games
+  );
   return (
     <GameList>
-      <LayoutGroup type="crossfade">
+      <LayoutGroup>
         <AnimatePresence>
           {pathId && <GameDetail pathId={pathId} />}
         </AnimatePresence>
+        {searched.length ? (
+          <div className="searched">
+            <h2>Searched games</h2>
+            <Games>
+              {searched.map((game) => (
+                <Game
+                  name={game.name}
+                  released={game.released}
+                  id={game.id}
+                  image={game.background_image}
+                  key={game.id}
+                />
+              ))}
+            </Games>
+          </div>
+        ) : (
+          ""
+        )}
         <h2>Upcoming Games</h2>
         <Games>
           {upcoming.map((game) => (

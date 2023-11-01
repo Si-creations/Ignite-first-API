@@ -17,10 +17,14 @@ const Nav = () => {
   const submitSearch = (e) => {
     e.preventDefault();
     dispatch(fetchSearch(textInput));
+    setTextInput("");
   };
+  const clearSearched = () => {
+    dispatch({type: "CLEAR_SEARCHED"})
+  }
   return (
     <StyledNav>
-      <Logo>
+      <Logo onClick={clearSearched}>
         <img src={logo} alt="logo" />
         <h1>Ignite</h1>
       </Logo>
